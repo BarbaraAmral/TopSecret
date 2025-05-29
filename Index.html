@@ -14,7 +14,7 @@
     <!-- Definición del video -->
     <a-assets>
         <video
-                id="video1"
+                id="#video1"
                 src="video.mp4"
                 preload="auto"
                 loop
@@ -40,7 +40,7 @@
 <!-- Script para reproducir el video al detectar el marcador -->
 <script>
     const marker = document.querySelector("a-marker");
-    const video = document.querySelector("#video.mp4");
+    const video = document.querySelector("#video1");
 
     marker.addEventListener("markerFound", () => {
         video.play().catch((e) => console.log("Bloqueo de autoplay:", e));
