@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>WebAR con video</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ar.js@3.4.2/aframe/build/aframe-ar.min.js"></script>
 </head>
@@ -14,33 +15,39 @@
     <!-- Definición del video -->
     <a-assets>
         <video
-                id="#video1"
-                src="video.mp4"
-                preload="auto"
-                loop
-                muted
-                playsinline
-                crossorigin="anonymous"
+            id="video1"
+            src="video.mp4"
+            preload="auto"
+            loop
+            muted
+            playsinline
+            crossorigin="anonymous"
         ></video>
     </a-assets>
 
     <!-- El marcador personalizado -->
-    <a-marker type="pattern" url="pattern-Prueba tarjeta AR.patt">
+    <!-- IMPORTANTE: asegúrate que el archivo .patt no tenga espacios en el nombre -->
+    <a-marker type="pattern" url="pattern-PruebaTarjetaAR.patt">
         <a-video
-                src="video.mp4"
-                width="1"
-                height="0.56"
-                position="0 0 0"
-                rotation="-90 0 0"
+            src="#video1"
+            width="1"
+            height="0.56"
+            position="0 0 0"
+            rotation="-90 0 0"
         ></a-video>
     </a-marker>
 
 </a-scene>
 
-<!-- Script para reproducir el video al detectar el marcador -->
+<!-- Script para controlar la reproducción del video -->
 <script>
     const marker = document.querySelector("a-marker");
     const video = document.querySelector("#video1");
+
+    // Asegura que el video pueda reproducirse al tocar si es necesario (para Safari/iOS)
+    document.body.addEventListener('click', () => {
+        video.play().catch(() => {});
+    });
 
     marker.addEventListener("markerFound", () => {
         video.play().catch((e) => console.log("Bloqueo de autoplay:", e));
@@ -52,3 +59,4 @@
 </script>
 </body>
 </html>
+
