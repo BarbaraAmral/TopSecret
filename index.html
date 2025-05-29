@@ -1,17 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>AR Prueba Básica</title>
+<head>
+    <title>WebAR con video</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ar.js@3.4.2/aframe/build/aframe-ar.min.js"></script>
-  </head>
-  <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="sourceType: webcam;">
-      <a-marker preset="hiro">
-        <a-box position="0 0.5 0" material="color: blue;"></a-box>
-      </a-marker>
-      <a-entity camera></a-entity>
-    </a-scene>
-  </body>
+</head>
+<body style="margin: 0; overflow: hidden;">
+<a-scene embedded arjs="sourceType: webcam;">
+    <!-- Cámara -->
+    <a-entity camera></a-entity>
+
+    <!-- Assets del video -->
+    <a-assets>
+        <video
+            id="video1"
+            src="video.mp4"
+            preload="auto"
+            loop
+            muted
+            playsinline
+            crossorigin="anonymous"
+        ></video>
+    </a-assets>
+
+    <!-- Marcador AR personalizado -->
+    <a-marker type="pattern" url="pattern-PruebaTarjetaAR.patt">
+        <a-video
+            src="#video1"
+            width="1"
+            height="0.56"
+            position="0 0 0"
+            rotation="-90 0 0"
+        ></a-video>
+    </a-marker>
+</a-scene>
+
+<!-- Script para reproducir el video al detectar el marcador -->
+<script>
+    const marker = document.querySelector("a-marker");
+    const video = document.querySelector("#video1");
+
+    // Safari/iOS: iniciar video por interacción del usuario
+    document.body.addEventListener('click', () => {
+        video.play().catch(() => {});
+    });
+
+    marker.addEventListener("markerFound", () => {
+        video.play().catch((e) => console.log("Bloqueo de autoplay:", e));
+    });
+
+    marker.addEventListener("markerLost", () => {
+        video.pause();
+    });
+</script>
+</body>
 </html>
+
 
