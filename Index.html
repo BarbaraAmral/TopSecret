@@ -25,9 +25,9 @@
     </a-assets>
 
     <!-- El marcador personalizado -->
-    <a-marker type="pattern" url="pattern-marker.patt">
+    <a-marker type="pattern" url="pattern-Prueba tarjeta AR.patt">
         <a-video
-                src="#video1"
+                src="#video.mp4"
                 width="1"
                 height="0.56"
                 position="0 0 0"
@@ -40,7 +40,7 @@
 <!-- Script para reproducir el video al detectar el marcador -->
 <script>
     const marker = document.querySelector("a-marker");
-    const video = document.querySelector("#video1");
+    const video = document.querySelector("#video.mp4");
 
     marker.addEventListener("markerFound", () => {
         video.play().catch((e) => console.log("Bloqueo de autoplay:", e));
