@@ -10,9 +10,7 @@
 <body style="margin: 0; overflow: hidden;">
 
 <body style='margin : 0px; overflow: hidden;'>
-	<a-scene embedded artoolkit='sourceType: webcam;'>
-  <!-- Cámara -->
-  <a-entity camera></a-entity>
+<a-scene embedded artoolkit='sourceType: webcam;'>
 
   <!-- Video en assets -->
   <a-assets>
@@ -41,7 +39,7 @@
 
 <script>
   const video = document.querySelector("#video1");
-  const marker = document.querySelector("a-marker");
+  const marker = document.querySelector("a-marker-camera");
 
   // iOS / Safari: necesita interacción inicial
   document.body.addEventListener("click", () => {
