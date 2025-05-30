@@ -12,28 +12,27 @@
     <a-entity camera></a-entity>
 
     <!-- Assets del video -->
-    <a-assets>
-        <video
-            id="video1"
-            src="video.mp4"
-            preload="auto"
-            loop
-            muted
-            playsinline
-            crossorigin="anonymous"
-        ></video>
-    </a-assets>
+<a-assets>
+    <video
+        id="video1"
+        src="video.mp4"
+        preload="auto"
+        loop
+        muted
+        playsinline
+        crossorigin="anonymous"
+    ></video>
+</a-assets>
 
-    <!-- Marcador AR personalizado -->
-    <a-marker type="pattern" url="pattern-PruebaTarjetaAR.patt">
-        <a-video
-            src="#video1"
-            width="1"
-            height="0.56"
-            position="0 0 0"
-            rotation="-90 0 0"
-        ></a-video>
-    </a-marker>
+<a-marker type="pattern" url="pattern-PruebaTarjetaAR.patt">
+    <a-video
+        src="#video1"
+        width="1"
+        height="0.56"
+        position="0 0 0"
+        rotation="-90 0 0"
+    ></a-video>
+</a-marker>
 </a-scene>
 
 <!-- Script para reproducir el video al detectar el marcador -->
