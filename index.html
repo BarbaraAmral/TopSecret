@@ -7,9 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/ar.js@3.4.2/aframe/build/aframe-ar.min.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
-<a-scene embedded arjs="sourceType: webcam;">
-    <!-- Cámara -->
-    <a-entity camera></a-entity>
+<a-scene embedded arjs>
 
     <!-- Assets del video -->
 <a-assets>
@@ -24,15 +22,15 @@
     ></video>
 </a-assets>
 
-<a-marker type="pattern" url="pattern-PruebaTarjetaAR.patt">
+<a-marker-camera type="pattern" url="pattern-PruebaTarjetaAR.patt">
     <a-video
-        src="#video1"
+        src="video.mp4"
         width="1"
         height="0.56"
         position="0 0 0"
         rotation="-90 0 0"
     ></a-video>
-</a-marker>
+</a-marker-camera>
 </a-scene>
 
 <!-- Script para reproducir el video al detectar el marcador -->
